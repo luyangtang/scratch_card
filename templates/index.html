@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+
+<title>My Web</title>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<body>
+<div class = "w3-margin-top w3-margin-left">
+  <h3>加加宝宝的Crimbo Scratch Card</h3>
+</div>
+
+<div class = "w3-margin-top w3-margin-left">
+
+{% for row in range(0,width) %}
+  <p>
+  {% for col in range(0,length) %}
+    <button onclick="btnClick('{{ row|string}}-{{col|string }}')" type="button" class="w3-button w3-teal">
+      <p id = "{{ row|string}}-{{col|string }}"> ??????? <p>
+    </button>
+  {% endfor %}
+  </p>
+{% endfor %}
+
+<script>
+function btnClick(id_str) {
+  var x = document.getElementById(id_str);
+  var data = {{sample|tojson}};
+  console.log(x.id);
+  console.log(x.id.split("-"));
+  var row = x.id.split("-")[0];
+  var col = x.id.split("-")[1];
+  console.log(data[1][1]);
+  x.innerHTML = data[col][row];
+
+}
+</script>
+
+
+</body>
+</html>
